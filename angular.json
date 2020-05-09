@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kiddybips-add": {
+    "ad-generator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,19 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kiddybips-add",
+            "outputPath": "dist/ad-generator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -66,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kiddybips-add:build"
+            "browserTarget": "ad-generator:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kiddybips-add:build:production"
+              "browserTarget": "ad-generator:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kiddybips-add:build"
+            "browserTarget": "ad-generator:build"
           }
         },
         "test": {
@@ -87,13 +82,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -105,24 +95,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kiddybips-add:serve"
+            "devServerTarget": "ad-generator:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "kiddybips-add:serve:production"
+              "devServerTarget": "ad-generator:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "kiddybips-add"
+    }
+  },
+  "defaultProject": "ad-generator"
 }

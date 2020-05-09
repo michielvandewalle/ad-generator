@@ -1,0 +1,31 @@
+<div class="form-group">
+  <div
+    *ngFor="let option of options; let i = index"
+    class="form-check form-check-inline"
+  >
+    <input
+      class="custom-control-input"
+      type="radio"
+      name="colorOption"
+      [id]="'color-' + i"
+      [value]="option.id"
+      [(ngModel)]="value"
+    />
+    <label class="form-check-label" [for]="'color-' + i">
+      <svg viewBox="0 0 16 16" height="32px" width="32px">
+        <path
+          [attr.fill]="option.background"
+          d="M8,8 L8,1 A7,7 0 0,1 14.062177826491071,11.5z"
+        ></path>
+        <path
+          [attr.fill]="option.brandText"
+          d="M8,8 L14.062177826491071,11.5 A7,7 0 0,1 1.9378221735089287,11.5z"
+        ></path>
+        <path
+          [attr.fill]="option.brandBackground"
+          d="M8,8 L1.9378221735089287,11.5 A7,7 0 0,1 7.999999999999999,1z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+</div>

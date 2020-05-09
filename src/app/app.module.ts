@@ -1,16 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+import { CanvasModule } from "./canvas/canvas.module";
+import { FormInputColorModule } from "./form/form-input-color/form-input-color.module";
+import { FormInputTextModule } from "./form/form-input-text/form-input-text.module";
+import { FormRadioCompositionModule } from "./form/form-radio-composition/form-radio-composition.module";
+import { FormUploadImageModule } from "./form/form-upload-image/form-upload-image.module";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    CanvasModule,
+    FormInputTextModule,
+    FormInputColorModule,
+    FormUploadImageModule,
+    FormRadioCompositionModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
