@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as p5 from "p5";
-import { CanvasModel } from "./canvas.model";
+import { Canvas } from "./canvas.model";
 import { Layout } from "../model/layout.model";
 import { Color } from "../model/color.model";
 import { Composition } from "../model/composition.model";
@@ -10,7 +10,7 @@ import { Composition } from "../model/composition.model";
   templateUrl: "./canvas.component.html",
 })
 export class CanvasComponent implements OnInit {
-  @Input() public model: CanvasModel;
+  @Input() public model: Canvas;
 
   @Input() public layout: Layout;
 

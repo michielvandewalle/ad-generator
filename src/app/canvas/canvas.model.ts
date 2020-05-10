@@ -1,6 +1,6 @@
 import * as p5 from "p5";
 
-export class CanvasModel {
+export class Canvas {
   public brand: string;
 
   public text: string;
@@ -27,7 +27,7 @@ export class CanvasModel {
 
   public filename: string;
 
-  constructor(init?: Partial<CanvasModel>) {
+  constructor(init?: Partial<Canvas>) {
     Object.assign(this, init);
   }
 }

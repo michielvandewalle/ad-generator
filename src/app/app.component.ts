@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { AppModel } from "./app.model";
 import { CanvasComponent } from "./canvas/canvas.component";
-import { CanvasModel } from "./canvas/canvas.model";
+import { Canvas } from "./canvas/canvas.model";
 import { Color } from "./model/color.model";
 import { Layout } from "./model/layout.model";
 import { Composition } from "./model/composition.model";
@@ -21,7 +21,7 @@ export class AppComponent {
 
   public compositionOptions: FormRadioOptions[] = [];
 
-  public canvasModel: CanvasModel = new CanvasModel();
+  public canvasModel: Canvas = new Canvas();
 
   constructor() {
     this.model.imageLabel = "Choose image";
