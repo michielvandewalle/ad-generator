@@ -9,6 +9,8 @@ export class Color {
 
   public text: string;
 
+  public shape: string;
+
   constructor(init?: Partial<Color>) {
     Object.assign(this, init);
   }

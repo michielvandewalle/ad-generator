@@ -45,6 +45,7 @@ export class CanvasComponent implements OnInit {
 
     ctx.draw = () => {
       this.drawBackground();
+      this.drawShape();
       this.drawText();
       this.drawFooter();
       this.drawBrand();
@@ -52,12 +53,33 @@ export class CanvasComponent implements OnInit {
     };
   }
 
+  private drawShape(): void {
+    const composition = this.getCompositionById(this.model.compositionId);
+
+    if (composition.hasOwnProperty("shape")) {
+      const coordinates = composition.shape;
+      const color = this.getColorById(this.model.colorId);
+
+      this.ctx.noStroke();
+      this.ctx.fill(color.shape);
+
+      this.ctx.rect(
+        coordinates.x,
+        coordinates.y,
+        coordinates.width,
+        coordinates.height
+      );
+    }
+  }
+
   private drawText(): void {
     if (this.model.text) {
+      const color = this.getColorById(this.model.colorId);
+
       this.ctx.textFont(this.model.font, this.model.textSize);
       this.ctx.textSize(this.model.textSize);
       this.ctx.textAlign(this.ctx.LEFT, this.ctx.BASELINE);
-      this.ctx.fill(this.model.textColor);
+      this.ctx.fill(color.text);
 
       const coordinates = this.getCompositionById(this.model.compositionId)
         .text;
@@ -73,10 +95,13 @@ export class CanvasComponent implements OnInit {
   }
 
   private drawFooter(): void {
-    if (this.model.text) {
+    if (this.model.footer) {
+      const color = this.getColorById(this.model.colorId);
+
       this.ctx.textFont(this.model.font, this.model.textSize);
       this.ctx.textSize(this.model.textSize);
-      this.ctx.fill(this.model.textColor);
+      this.ctx.textAlign(this.ctx.LEFT);
+      this.ctx.fill(color.text);
       this.ctx.text(
         this.model.footer,
         this.layout.footer.x,
@@ -100,7 +125,7 @@ export class CanvasComponent implements OnInit {
     // Brand name
     this.ctx.textFont(this.model.font, this.model.textSize);
     this.ctx.textSize(this.model.textSize);
-    this.ctx.fill(color.text);
+    this.ctx.fill(color.brandText);
     this.ctx.textAlign(this.ctx.CENTER, this.ctx.CENTER);
     this.ctx.text(
       this.model.brand,

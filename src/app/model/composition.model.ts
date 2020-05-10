@@ -9,6 +9,8 @@ export class Composition {
 
   public text: Coordinates;
 
+  public shape: Coordinates;
+
   constructor(init?: Partial<Composition>) {
     Object.assign(this, init);
   }

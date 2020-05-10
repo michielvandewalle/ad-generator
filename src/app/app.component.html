@@ -24,12 +24,12 @@
               </label>
             </div>
           </div>
-          <app-form-radio-composition
-            name="'composition'"
-            [id]="'composition'"
-            [options]="compositionOptions"
-            [(ngModel)]="canvasModel.compositionId"
-          ></app-form-radio-composition>
+          <app-form-input-text
+            name="'footer'"
+            [id]="'footer'"
+            [(ngModel)]="canvasModel.footer"
+          ></app-form-input-text>
+
           <app-form-input-color
             name="'color'"
             [id]="'color'"
@@ -38,9 +38,17 @@
           ></app-form-input-color>
         </form>
 
-        <button class="btn btn-outline-primary mt-auto" (click)="download()">
-          Download
-        </button>
+        <div class="mt-auto">
+          <button
+            class="btn btn-outline-primary w-100 mb-2"
+            (click)="shuffle()"
+          >
+            Shuffle ⤨
+          </button>
+          <button class="btn btn-outline-primary w-100" (click)="download()">
+            Download
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-12 col-lg-8">

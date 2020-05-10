@@ -46,6 +46,24 @@ export class AppComponent {
     this.compositionOptions = this.getCompositionOptions();
   }
 
+  /**
+   * @description shuffle between layout compositions
+   */
+  public shuffle(): void {
+    let id = this.canvasModel.compositionId;
+    const index = this.layout.composition.findIndex(
+      (composition: Composition) => composition.id === id
+    );
+
+    if (index === this.layout.composition.length - 1) {
+      this.canvasModel.compositionId = this.layout.composition[0].id;
+    } else {
+      this.canvasModel.compositionId = this.layout.composition[index + 1].id;
+    }
+
+    console.log(this.canvasModel.compositionId);
+  }
+
   public download(): void {
     this.canvas.download();
   }
@@ -66,44 +84,50 @@ export class AppComponent {
       new Color({
         id: "plum",
         background: "#dfd8e3",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
-        text: "#fff",
+        brandText: "#CEA193",
+        brandBackground: "#F5D3C9",
+        text: "#B9A4C5",
+        shape: "#fce7dd",
       }),
       new Color({
         id: "rose",
         background: "#fce7dd",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
-        text: "#fff",
+        brandText: "#6D5B51",
+        brandBackground: "#CAF4EB",
+        text: "#6D5B51",
+        shape: "#BCA79D",
       }),
       new Color({
         id: "sage",
         background: "#e8f3ec",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
-        text: "#fff",
+        brandText: "#D6F5FF",
+        brandBackground: "#85B1CC",
+        text: "#8CB49C",
+        shape: "#516258",
       }),
       new Color({
         id: "sand",
         background: "#e6f1e4",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
-        text: "#fff",
+        brandText: "#566254",
+        brandBackground: "#A2AF9F",
+        text: "#A2AF9F",
+        shape: "#566254",
       }),
       new Color({
         id: "sea",
         background: "#d7efee",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
+        brandText: "#324B4A",
+        brandBackground: "#7BB6B4",
         text: "#fff",
+        shape: "#ADB1CA",
       }),
       new Color({
         id: "sky",
         background: "#e2eff9",
-        brandText: "#fff",
-        brandBackground: "#fce7dd",
+        brandText: "#374955",
+        brandBackground: "#FFE5F7",
         text: "#fff",
+        shape: "#C9AEBF",
       }),
     ];
   }
@@ -150,6 +174,33 @@ export class AppComponent {
           this.layout.height / 2 + this.layout.padding * 2,
           this.layout.width - this.layout.padding * 2,
           this.layout.height / 2 - this.layout.padding * 3.5
+        ),
+      }),
+      new Composition({
+        id: "v3",
+        image: new Coordinates(
+          this.layout.width / 3,
+          this.layout.padding,
+          (this.layout.width / 3) * 2 - this.layout.padding,
+          this.layout.height - this.layout.padding * 2
+        ),
+        brand: new Coordinates(
+          this.layout.padding,
+          (this.layout.height / 3) * 2,
+          this.layout.width / 3 - this.layout.padding,
+          this.layout.width / 3 - this.layout.padding
+        ),
+        text: new Coordinates(
+          this.layout.padding + this.layout.padding / 2,
+          this.layout.padding + this.layout.padding / 2,
+          this.layout.width / 3 - this.layout.padding - this.layout.padding,
+          this.layout.width / 3 - this.layout.padding - this.layout.padding / 2
+        ),
+        shape: new Coordinates(
+          this.layout.padding,
+          this.layout.padding,
+          this.layout.width / 3 - this.layout.padding,
+          this.layout.width / 3 - this.layout.padding
         ),
       }),
     ];
