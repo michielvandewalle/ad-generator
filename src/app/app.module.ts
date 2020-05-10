@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "./app.component";
 import { CanvasModule } from "./canvas/canvas.module";
 import { FormInputColorModule } from "./form/form-input-color/form-input-color.module";
@@ -12,6 +13,7 @@ import { FormUploadImageModule } from "./form/form-upload-image/form-upload-imag
   imports: [
     BrowserModule,
     FormsModule,
+    NgbAccordionModule,
     CanvasModule,
     FormInputTextModule,
     FormInputColorModule,

@@ -2,4 +2,9 @@
 @import "../src/app/scss/variables";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+@import "../src/app/scss/accordion.scss";
 @import "../src/app/scss/sidebar.scss";
+@import "../src/app/scss/content.scss";
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
