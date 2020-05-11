@@ -8,6 +8,11 @@ import { FormInputColorModule } from "./form/form-input-color/form-input-color.m
 import { FormInputTextModule } from "./form/form-input-text/form-input-text.module";
 import { FormRadioLayoutModule } from "./form/form-radio-layout/form-radio-layout.module";
 import { FormUploadImageModule } from "./form/form-upload-image/form-upload-image.module";
+import { LayoutV1Mapper } from "./mappers/layout-v1.mapper";
+import { LayoutMapper } from "./mappers/layout.mapper";
+import { ColorService } from "./service/color.service";
+import { LayoutService } from "./service/layout.service";
+import { StateService } from "./service/state.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,5 +27,12 @@ import { FormUploadImageModule } from "./form/form-upload-image/form-upload-imag
     FormRadioLayoutModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    StateService,
+    LayoutService,
+    ColorService,
+    LayoutMapper,
+    LayoutV1Mapper,
+  ],
 })
 export class AppModule {}

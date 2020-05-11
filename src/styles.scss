@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../src/app/scss/variables";
+@import "../src/assets/scss/variables";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-@import "../src/app/scss/accordion.scss";
-@import "../src/app/scss/sidebar.scss";
-@import "../src/app/scss/content.scss";
+@import "../src/assets/scss/accordion.scss";
+@import "../src/assets/scss/sidebar.scss";
+@import "../src/assets/scss/content.scss";
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";

@@ -1,15 +1,16 @@
 import { Coordinates } from "./coordinates.model";
+import { Graphic } from "./graphic.model";
 
 export class Composition {
   public id: string;
 
-  public brand: Coordinates;
+  public brand: Graphic;
 
-  public image: Coordinates;
+  public image: Graphic;
 
-  public text: Coordinates;
+  public text: Graphic;
 
-  public shape: Coordinates;
+  public shape: Graphic[];
 
   constructor(init?: Partial<Composition>) {
     Object.assign(this, init);

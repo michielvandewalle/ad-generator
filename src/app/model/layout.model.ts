@@ -1,20 +1,15 @@
 import { Color } from "./color.model";
 import { Composition } from "./composition.model";
 import { Coordinates } from "./coordinates.model";
-import { Canvas } from "../canvas/canvas.model";
+import { State } from "./state.model";
+import { Canvas } from "./canvas.model";
 
 export class Layout {
+  public id: string;
+
   public colors: Color[];
 
   public composition: Composition[];
-
-  public footer: Coordinates;
-
-  public height: number;
-
-  public padding: number;
-
-  public width: number;
 
   public canvas: Canvas;
 

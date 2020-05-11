@@ -1,11 +1,10 @@
 import * as p5 from "p5";
 
-export class Canvas {
+export class State {
   public brand: string;
 
-  public text: string;
-
-  public footer: string;
+  public text: string =
+    "Welkom bij Kiddybips, de ecologische babywinkel waar je naar hartelust wasbare luiers, ecologisch maandverband , draagdoeken , wollen kledij, oerdegelijke regenkledij, verantwoord speelgoed en nog zoveel meer basics en toffe spulletjes kan shoppen.";
 
   public font: string;
 
@@ -29,7 +28,7 @@ export class Canvas {
 
   public filename: string;
 
-  constructor(init?: Partial<Canvas>) {
+  constructor(init?: Partial<State>) {
     Object.assign(this, init);
   }
 }

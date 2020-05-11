@@ -1,23 +1,24 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as p5 from "p5";
-import { Canvas } from "./canvas.model";
+import { State } from "../model/state.model";
 import { Layout } from "../model/layout.model";
 import { Color } from "../model/color.model";
 import { Composition } from "../model/composition.model";
+import { ColorService } from "../service/color.service";
 
 @Component({
   selector: "app-canvas",
   templateUrl: "./canvas.component.html",
 })
 export class CanvasComponent implements OnInit {
-  @Input() public model: Canvas;
+  @Input() public state: State;
 
   @Input() public layout: Layout;
 
   private ctx: p5;
   private canvas: p5.Renderer;
 
-  constructor() {
+  constructor(private colorService: ColorService) {
     this.sketch = this.sketch.bind(this);
   }
 
@@ -26,7 +27,7 @@ export class CanvasComponent implements OnInit {
   }
 
   public download(): void {
-    this.ctx.saveCanvas(this.canvas, "screenshot", "png");
+    this.ctx.saveCanvas(this.canvas, `ad-${this.layout.id}`, "png");
   }
 
   private createCanvas() {
@@ -36,99 +37,90 @@ export class CanvasComponent implements OnInit {
   private sketch(ctx) {
     ctx.setup = () => {
       this.canvas = this.ctx.createCanvas(
-        this.layout.width,
-        this.layout.height
+        this.layout.canvas.width,
+        this.layout.canvas.height
       );
       this.canvas.parent("sketch-container");
-      this.ctx.frameRate(1);
+      this.ctx.frameRate(10);
     };
 
     ctx.draw = () => {
       this.drawBackground();
       this.drawShape();
       this.drawText();
-      this.drawFooter();
       this.drawBrand();
-      this.drawImage();
+      // this.drawImage();
     };
   }
 
   private drawShape(): void {
-    const composition = this.getCompositionById(this.model.compositionId);
+    const composition = this.getCompositionById(this.state.compositionId);
 
     if (composition.hasOwnProperty("shape")) {
-      const coordinates = composition.shape;
-      const color = this.getColorById(this.model.colorId);
+      const shapes = composition.shape;
+      const color = this.colorService.getColorById(this.state.colorId);
 
-      this.ctx.noStroke();
-      this.ctx.fill(color.shape);
+      for (let i = 0; i < shapes.length; i++) {
+        const coordinates = shapes[i].coordinates;
 
-      this.ctx.rect(
-        coordinates.x,
-        coordinates.y,
-        coordinates.width,
-        coordinates.height
-      );
+        this.ctx.noStroke();
+        this.ctx.fill(color.shape);
+
+        this.ctx.rect(
+          coordinates.x,
+          coordinates.y,
+          coordinates.width,
+          coordinates.height
+        );
+      }
     }
   }
 
   private drawText(): void {
-    if (this.model.text) {
-      const color = this.getColorById(this.model.colorId);
+    if (this.state.text) {
+      const color = this.colorService.getColorById(this.state.colorId);
 
-      this.ctx.textFont(this.model.font, this.model.textSize);
-      this.ctx.textSize(this.model.textSize);
+      this.ctx.textFont(this.state.font, this.state.textSize);
+      this.ctx.textSize(this.state.textSize);
       this.ctx.textAlign(this.ctx.LEFT, this.ctx.BASELINE);
       this.ctx.fill(color.text);
 
-      const coordinates = this.getCompositionById(this.model.compositionId)
-        .text;
+      const coordinates = this.getCompositionById(this.state.compositionId).text
+        .coordinates;
 
       this.ctx.text(
-        this.model.text,
+        this.state.text,
         coordinates.x,
         coordinates.y,
         coordinates.width,
         coordinates.height
-      );
-    }
-  }
-
-  private drawFooter(): void {
-    if (this.model.footer) {
-      const color = this.getColorById(this.model.colorId);
-
-      this.ctx.textFont(this.model.font, this.model.textSize);
-      this.ctx.textSize(this.model.textSize);
-      this.ctx.textAlign(this.ctx.LEFT);
-      this.ctx.fill(color.text);
-      this.ctx.text(
-        this.model.footer,
-        this.layout.footer.x,
-        this.layout.footer.y,
-        this.layout.footer.width,
-        this.layout.footer.height
       );
     }
   }
 
   public drawBrand(): void {
-    const coordinates = this.getCompositionById(this.model.compositionId).brand;
-    const color = this.getColorById(this.model.colorId);
+    const coordinates = this.getCompositionById(this.state.compositionId).brand
+      .coordinates;
+    const color = this.colorService.getColorById(this.state.colorId);
 
-    // Ellipse
+    // Rectangle
     this.ctx.fill(color.brandBackground);
     this.ctx.noStroke();
-    this.ctx.ellipseMode(this.ctx.CORNER);
-    this.ctx.ellipse(coordinates.x, coordinates.y, coordinates.width);
+    this.ctx.rectMode(this.ctx.CORNER);
+    this.ctx.rect(
+      coordinates.x,
+      coordinates.y,
+      coordinates.width,
+      coordinates.height
+    );
 
     // Brand name
-    this.ctx.textFont(this.model.font, this.model.textSize);
-    this.ctx.textSize(this.model.textSize);
+    this.ctx.textFont(this.state.font, this.state.textSize);
+    this.ctx.textSize(this.state.textSize);
     this.ctx.fill(color.brandText);
     this.ctx.textAlign(this.ctx.CENTER, this.ctx.CENTER);
     this.ctx.text(
-      this.model.brand,
+      this.state.brand,
       coordinates.x,
       coordinates.y,
       coordinates.width,
@@ -137,13 +129,13 @@ export class CanvasComponent implements OnInit {
   }
 
   public drawImage(): void {
-    if (this.model.image) {
-      const coordinates = this.getCompositionById(this.model.compositionId)
-        .image;
+    if (this.state.image) {
+      const coordinates = this.getCompositionById(this.state.compositionId)
+        .image.coordinates;
 
-      const crop = this.getImageCropCoordinates(this.model.image);
+      const crop = this.getImageCropCoordinates(this.state.image);
       this.ctx.image(
-        this.model.image,
+        this.state.image,
         coordinates.x,
         coordinates.y,
         coordinates.width,
@@ -157,15 +149,17 @@ export class CanvasComponent implements OnInit {
   }
 
   public drawBackground(): void {
-    this.ctx.background(this.getColorById(this.model.colorId).background);
+    this.ctx.background(
+      this.colorService.getColorById(this.state.colorId).background
+    );
   }
 
   public uploadLogo(data): void {
-    this.model.logo = this.ctx.createImg(data, "").hide();
+    this.state.logo = this.ctx.createImg(data, "").hide();
   }
 
   public uploadImage(data): void {
-    this.model.image = this.ctx.createImg(data, "").hide();
+    this.state.image = this.ctx.createImg(data, "").hide();
   }
 
   private getImageCropCoordinates(image): any {
@@ -177,10 +171,6 @@ export class CanvasComponent implements OnInit {
     const sw = isLandscape ? image.height : image.width;
 
     return { sx, sy, sw };
-  }
-
-  private getColorById(id: string): Color {
-    return this.layout.colors.find((color: Color) => color.id === id);
   }
 
   private getCompositionById(id: string): Composition {

@@ -1,9 +1,9 @@
 <div class="d-flex">
-  <div class="sidebar bg-white">
+  <div class="sidebar bg-white sticky-top">
     <div class="card-body my-2">
       <b>Ad Generator</b>
     </div>
-    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-accordion [closeOthers]="true">
       <ngb-panel id="static-1">
         <ng-template ngbPanelHeader let-opened="opened">
           <div class="d-flex align-items-center justify-content-between">
@@ -47,7 +47,7 @@
             name="'layout'"
             [id]="'layout'"
             [options]="layoutOptions"
-            [(ngModel)]="canvasModel.layoutId"
+            [(ngModel)]="state.layoutId"
           ></app-form-radio-layout>
         </ng-template>
       </ngb-panel>
@@ -95,13 +95,7 @@
               name="'text'"
               [id]="'text'"
               [label]="'Text'"
-              [(ngModel)]="canvasModel.text"
-            ></app-form-input-text>
-            <app-form-input-text
-              name="'footer'"
-              [id]="'footer'"
-              [label]="'Footer'"
-              [(ngModel)]="canvasModel.footer"
+              [(ngModel)]="state.text"
             ></app-form-input-text>
           </form>
         </ng-template>
@@ -156,7 +150,7 @@
                 (change)="uploadImage($event)"
               />
               <label class="custom-file-label" for="image">
-                {{ model.imageLabel }}
+                {{ imageLabel }}
               </label>
             </div>
           </div>
@@ -204,8 +198,8 @@
           <app-form-input-color
             name="'color'"
             [id]="'color'"
-            [options]="layout.colors"
-            [(ngModel)]="canvasModel.colorId"
+            [options]="colorOptions"
+            [(ngModel)]="state.colorId"
           ></app-form-input-color>
         </ng-template>
       </ngb-panel>
@@ -226,7 +220,7 @@
           </button>
         </div>
       </div>
-      <app-canvas [model]="canvasModel" [layout]="layout"></app-canvas>
+      <app-canvas [state]="state" [layout]="selectedLayout"></app-canvas>
     </div>
   </div>
 </div>
