@@ -21,6 +21,8 @@ export class Canvas {
 
   public compositionId: string;
 
+  public layoutId: string;
+
   public logo: any;
 
   public image: any;

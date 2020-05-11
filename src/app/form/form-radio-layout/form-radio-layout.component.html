@@ -1,0 +1,20 @@
+<div class="form-group">
+  <label class="d-block">{{ label }}</label>
+  <div
+    *ngFor="let option of options; let i = index"
+    class="form-check form-check-inline"
+  >
+    <input
+      class="custom-control-input"
+      type="radio"
+      name="layoutOption"
+      [id]="'layout-' + i"
+      [value]="option.value"
+      [(ngModel)]="value"
+    />
+    <label class="form-check-label" [for]="'layout-' + i">
+      <span>{{ option.label }}</span>
+      <img [src]="option.img" class="img-fluid" alt="" />
+    </label>
+  </div>
+</div>

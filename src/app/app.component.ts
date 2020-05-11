@@ -7,6 +7,7 @@ import { Layout } from "./model/layout.model";
 import { Composition } from "./model/composition.model";
 import { Coordinates } from "./model/coordinates.model";
 import { FormRadioOptions } from "./model/form-radio-options.model";
+import { FormRadioLayout } from "./form/form-radio-layout/form-radio-layout.model";
 
 @Component({
   selector: "app-root",
@@ -18,6 +19,8 @@ export class AppComponent {
   public model: AppModel = new AppModel();
 
   public layout: Layout = new Layout();
+
+  public layoutOptions: FormRadioLayout[] = [];
 
   public compositionOptions: FormRadioOptions[] = [];
 
@@ -35,6 +38,7 @@ export class AppComponent {
     this.canvasModel.bgColor = "#fff";
     this.canvasModel.filename = "kiddybips-ad.png";
     this.canvasModel.compositionId = "v1";
+    this.canvasModel.layoutId = "v1";
     this.canvasModel.colorId = "plum";
     this.layout.padding = 48;
     this.layout.width = 800;
@@ -44,6 +48,7 @@ export class AppComponent {
     this.layout.footer = this.getFooter();
 
     this.compositionOptions = this.getCompositionOptions();
+    this.layoutOptions = this.getLayoutOptions();
   }
 
   /**
@@ -217,5 +222,13 @@ export class AppComponent {
       this.layout.width - this.layout.padding,
       40
     );
+  }
+
+  private getLayoutOptions(): FormRadioLayout[] {
+    return [
+      new FormRadioLayout("v1", "v1", "../assets/images/v1.png"),
+      new FormRadioLayout("v2", "v2", "../assets/images/v2.png"),
+      new FormRadioLayout("v3", "v3", "../assets/images/v3.png"),
+    ];
   }
 }

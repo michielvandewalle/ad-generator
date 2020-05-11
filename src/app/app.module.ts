@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { CanvasModule } from "./canvas/canvas.module";
 import { FormInputColorModule } from "./form/form-input-color/form-input-color.module";
 import { FormInputTextModule } from "./form/form-input-text/form-input-text.module";
+import { FormRadioLayoutModule } from "./form/form-radio-layout/form-radio-layout.module";
 import { FormUploadImageModule } from "./form/form-upload-image/form-upload-image.module";
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormUploadImageModule } from "./form/form-upload-image/form-upload-imag
     FormInputTextModule,
     FormInputColorModule,
     FormUploadImageModule,
+    FormRadioLayoutModule,
   ],
   bootstrap: [AppComponent],
 })
