@@ -17,8 +17,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Deploy
 
 ```
-ng build --prod --output-path docs --base-href /ad-generator/
-cp docs/index.html docs/404.html
+ng build --prod --output-path docs --base-href /ad-generator/ && cp docs/index.html docs/404.html
 ```
 
 ## Further help

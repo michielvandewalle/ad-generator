@@ -6,9 +6,12 @@
     <ngb-accordion [closeOthers]="true">
       <ngb-panel id="static-1">
         <ng-template ngbPanelHeader let-opened="opened">
-          <div class="d-flex align-items-center justify-content-between">
+          <button
+            class="d-flex align-items-center justify-content-between btn-block btn-unstyled"
+            ngbPanelToggle
+          >
             <span>Layout</span>
-            <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="btn btn-link p-0">
               <svg
                 *ngIf="!opened"
                 class="bi bi-chevron-right"
@@ -39,8 +42,8 @@
                   clip-rule="evenodd"
                 />
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
         </ng-template>
         <ng-template ngbPanelContent>
           <app-form-radio-layout
@@ -53,9 +56,12 @@
       </ngb-panel>
       <ngb-panel id="static-2">
         <ng-template ngbPanelHeader let-opened="opened">
-          <div class="d-flex align-items-center justify-content-between">
+          <button
+            class="d-flex align-items-center justify-content-between btn-block btn-unstyled"
+            ngbPanelToggle
+          >
             <span>Content</span>
-            <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="btn btn-link p-0">
               <svg
                 *ngIf="!opened"
                 class="bi bi-chevron-right"
@@ -86,8 +92,8 @@
                   clip-rule="evenodd"
                 />
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
         </ng-template>
         <ng-template ngbPanelContent>
           <form>
@@ -102,9 +108,12 @@
       </ngb-panel>
       <ngb-panel id="static-3">
         <ng-template ngbPanelHeader let-opened="opened">
-          <div class="d-flex align-items-center justify-content-between">
+          <button
+            class="d-flex align-items-center justify-content-between btn-block btn-unstyled"
+            ngbPanelToggle
+          >
             <span>Images</span>
-            <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="btn btn-link p-0">
               <svg
                 *ngIf="!opened"
                 class="bi bi-chevron-right"
@@ -135,8 +144,8 @@
                   clip-rule="evenodd"
                 />
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="form-group">
@@ -158,9 +167,12 @@
       </ngb-panel>
       <ngb-panel id="static-4">
         <ng-template ngbPanelHeader let-opened="opened">
-          <div class="d-flex align-items-center justify-content-between">
+          <button
+            class="d-flex align-items-center justify-content-between btn-block btn-unstyled"
+            ngbPanelToggle
+          >
             <span>Color</span>
-            <button ngbPanelToggle class="btn btn-link p-0">
+            <span class="btn btn-link p-0">
               <svg
                 *ngIf="!opened"
                 class="bi bi-chevron-right"
@@ -191,8 +203,8 @@
                   clip-rule="evenodd"
                 />
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
         </ng-template>
         <ng-template ngbPanelContent>
           <app-form-input-color

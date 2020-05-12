@@ -63,6 +63,8 @@ export class AppComponent implements OnInit {
     } else {
       this.state.compositionId = selectedLayout.composition[index + 1].id;
     }
+
+    console.log(this.state.compositionId);
   }
 
   /**
