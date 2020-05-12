@@ -6,7 +6,7 @@ export class Composition {
 
   public brand: Graphic;
 
-  public image: Graphic;
+  public image: Graphic[];
 
   public text: Graphic;
 

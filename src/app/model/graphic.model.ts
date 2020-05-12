@@ -1,5 +1,5 @@
 import { Coordinates } from "./coordinates.model";
-import { Font } from "p5";
+import { Font } from "./font/font.model";
 
 export class Graphic {
   public id: string;

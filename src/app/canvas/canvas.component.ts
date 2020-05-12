@@ -49,7 +49,7 @@ export class CanvasComponent implements OnInit {
       this.drawShape();
       this.drawText();
       this.drawBrand();
-      // this.drawImage();
+      this.drawImage();
     };
   }
 
@@ -78,29 +78,28 @@ export class CanvasComponent implements OnInit {
 
   private drawText(): void {
     if (this.state.text) {
+      const text = this.getCompositionById(this.state.compositionId).text;
       const color = this.colorService.getColorById(this.state.colorId);
 
-      this.ctx.textFont(this.state.font, this.state.textSize);
-      this.ctx.textSize(this.state.textSize);
-      this.ctx.textAlign(this.ctx.LEFT, this.ctx.BASELINE);
+      this.ctx.textFont(text.font.fontFamily, text.font.textSize);
+      this.ctx.textAlign(
+        text.font.textAlignment.horizontal,
+        text.font.textAlignment.vertical
+      );
       this.ctx.fill(color.text);
-
-      const coordinates = this.getCompositionById(this.state.compositionId).text
-        .coordinates;
 
       this.ctx.text(
         this.state.text,
-        coordinates.x,
-        coordinates.y,
-        coordinates.width,
-        coordinates.height
+        text.coordinates.x,
+        text.coordinates.y,
+        text.coordinates.width,
+        text.coordinates.height
       );
     }
   }
 
   public drawBrand(): void {
-    const coordinates = this.getCompositionById(this.state.compositionId).brand
-      .coordinates;
+    const brand = this.getCompositionById(this.state.compositionId).brand;
     const color = this.colorService.getColorById(this.state.colorId);
 
     // Rectangle
@@ -108,43 +107,51 @@ export class CanvasComponent implements OnInit {
     this.ctx.noStroke();
     this.ctx.rectMode(this.ctx.CORNER);
     this.ctx.rect(
-      coordinates.x,
-      coordinates.y,
-      coordinates.width,
-      coordinates.height
+      brand.coordinates.x,
+      brand.coordinates.y,
+      brand.coordinates.width,
+      brand.coordinates.height
     );
 
     // Brand name
-    this.ctx.textFont(this.state.font, this.state.textSize);
-    this.ctx.textSize(this.state.textSize);
+    this.ctx.textFont(brand.font.fontFamily, brand.font.textSize);
     this.ctx.fill(color.brandText);
-    this.ctx.textAlign(this.ctx.CENTER, this.ctx.CENTER);
+    this.ctx.textAlign(brand.font.textAlignment.horizontal, this.ctx.CENTER);
     this.ctx.text(
       this.state.brand,
-      coordinates.x,
-      coordinates.y,
-      coordinates.width,
-      coordinates.height
+      brand.coordinates.x,
+      brand.coordinates.y,
+      brand.coordinates.width,
+      brand.coordinates.height
     );
   }
 
   public drawImage(): void {
-    if (this.state.image) {
-      const coordinates = this.getCompositionById(this.state.compositionId)
-        .image.coordinates;
+    const composition = this.getCompositionById(this.state.compositionId);
 
-      const crop = this.getImageCropCoordinates(this.state.image);
-      this.ctx.image(
-        this.state.image,
-        coordinates.x,
-        coordinates.y,
-        coordinates.width,
-        coordinates.height,
-        crop.sx,
-        crop.sy,
-        crop.sw,
-        crop.sw
-      );
+    if (composition.hasOwnProperty("image")) {
+      const images = composition.image;
+
+      for (let i = 0; i < images.length; i++) {
+        const coordinates = images[i].coordinates;
+
+        // Check if image is already uploaded
+        const image = this.state.image[i];
+        if (image) {
+          const crop = this.getImageCropCoordinates(this.state.image);
+          this.ctx.image(
+            this.state.image[i],
+            coordinates.x,
+            coordinates.y,
+            coordinates.width,
+            coordinates.height,
+            crop.sx,
+            crop.sy,
+            crop.sw,
+            crop.sw
+          );
+        }
+      }
     }
   }
 
@@ -154,12 +161,8 @@ export class CanvasComponent implements OnInit {
     );
   }
 
-  public uploadLogo(data): void {
-    this.state.logo = this.ctx.createImg(data, "").hide();
-  }
-
   public uploadImage(data): void {
-    this.state.image = this.ctx.createImg(data, "").hide();
+    this.state.image.push(this.ctx.createImg(data, "").hide());
   }
 
   private getImageCropCoordinates(image): any {

@@ -4,6 +4,9 @@ import { Composition } from "../model/composition.model";
 import { Coordinates } from "../model/coordinates.model";
 import { Canvas } from "../model/canvas.model";
 import { Graphic } from "../model/graphic.model";
+import { Font } from "../model/font/font.model";
+import { TextAlignment } from "../model/font/text-alignment.model";
+import * as p5 from "p5";
 
 @Injectable()
 export class LayoutV1Mapper {
@@ -44,22 +47,27 @@ export class LayoutV1Mapper {
             width / 2 - margin,
             height / 2 - margin
           ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 24,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 18,
+          }),
         }),
-        image: new Graphic({
-          coordinates: new Coordinates(
-            width / 2,
-            margin,
-            width / 2 - margin,
-            height / 2 - margin
-          ),
-        }),
+        image: this.getImage(width, height, margin),
         text: new Graphic({
           coordinates: new Coordinates(
-            width / 2,
-            height / 2,
-            width / 2 - margin,
-            height / 2 - margin
+            width / 2 + margin / 2,
+            height / 2 + margin / 2,
+            width / 2 - margin * 2,
+            height / 2 - margin * 2
           ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 24,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 18,
+          }),
         }),
         shape: this.getShape(width, height, margin),
       })
@@ -68,16 +76,29 @@ export class LayoutV1Mapper {
     return composition;
   }
 
-  private getShape(width: number, height: number, margin: number): Graphic[] {
+  private getImage(width: number, height: number, margin: number): Graphic[] {
     return [
       new Graphic({
         coordinates: new Coordinates(
+          width / 2,
           margin,
-          height / 2 + margin * 2,
-          width - margin * 2,
-          height / 2 - margin * 3.5
+          width / 2 - margin,
+          height / 2 - margin
         ),
       }),
+      new Graphic({
+        coordinates: new Coordinates(
+          margin,
+          height / 2,
+          width / 2 - margin,
+          height / 2 - margin
+        ),
+      }),
+    ];
+  }
+
+  private getShape(width: number, height: number, margin: number): Graphic[] {
+    return [
       new Graphic({
         coordinates: new Coordinates(
           width / 2,
