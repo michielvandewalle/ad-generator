@@ -21,6 +21,7 @@ export class LayoutV1Mapper {
 
     return new Layout({
       id: "v1",
+      label: "square",
       canvas: canvas,
       composition: this.getComposition(
         canvas.width,

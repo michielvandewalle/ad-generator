@@ -7,6 +7,8 @@ import { Canvas } from "./canvas.model";
 export class Layout {
   public id: string;
 
+  public label: string;
+
   public colors: Color[];
 
   public composition: Composition[];

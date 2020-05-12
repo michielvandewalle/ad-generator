@@ -1,0 +1,21 @@
+.accordion .card,
+.accordion .card-header {
+  border: none;
+  border-radius: 0;
+}
+
+.accordion .card:first-of-type {
+  border-top: 1px solid $card-border-color !important;
+}
+
+.accordion .card {
+  border-bottom: 1px solid $card-border-color !important;
+}
+
+.accordion .card-header {
+  background-color: $white;
+}
+
+.accordion .card-body {
+  background-color: $card-cap-bg;
+}
