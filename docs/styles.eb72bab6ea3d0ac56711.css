@@ -4,7 +4,7 @@
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */@-webkit-keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}@-webkit-keyframes spinner-border{to{transform:rotate(1turn)}}@-webkit-keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1}}.accordion .card,.accordion .card-header{border:none;border-radius:0}.accordion .card:first-of-type{border-top:1px solid rgba(0,0,0,.125)!important}.accordion .card{border-bottom:1px solid rgba(0,0,0,.125)!important}.accordion .card-header{background-color:#fff}.accordion .card-body{background-color:rgba(0,0,0,.03)}.sidebar{height:100vh;width:300px;flex:0 0 300px}.content{min-width:0;width:100%}
+ */@-webkit-keyframes progress-bar-stripes{0%{background-position:1rem 0}to{background-position:0 0}}@-webkit-keyframes spinner-border{to{transform:rotate(1turn)}}@-webkit-keyframes spinner-grow{0%{transform:scale(0)}50%{opacity:1}}.accordion .card,.accordion .card-header{border:none;border-radius:0}.accordion .card:first-of-type{border-top:1px solid rgba(0,0,0,.125)!important}.accordion .card{border-bottom:1px solid rgba(0,0,0,.125)!important}.accordion .card-header{background-color:#fff}.accordion .card-body{background-color:rgba(0,0,0,.03)}.btn-unstyled{padding:0;margin:0;background:0;border:none}.btn-unstyled:focus{outline:none}.sidebar{height:100vh;width:300px;flex:0 0 300px}.content{min-width:0;width:100%}
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
