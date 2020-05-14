@@ -9,6 +9,7 @@ import { FormInputTextModule } from "./form/form-input-text/form-input-text.modu
 import { FormRadioLayoutModule } from "./form/form-radio-layout/form-radio-layout.module";
 import { FormUploadImageModule } from "./form/form-upload-image/form-upload-image.module";
 import { LayoutV1Mapper } from "./mappers/layout-v1.mapper";
+import { LayoutV2Mapper } from "./mappers/layout-v2.mapper";
 import { LayoutMapper } from "./mappers/layout.mapper";
 import { ColorService } from "./service/color.service";
 import { LayoutService } from "./service/layout.service";
@@ -33,6 +34,7 @@ import { StateService } from "./service/state.service";
     ColorService,
     LayoutMapper,
     LayoutV1Mapper,
+    LayoutV2Mapper,
   ],
 })
 export class AppModule {}

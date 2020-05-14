@@ -29,7 +29,11 @@ export class LayoutService {
   public getLayoutOptions(): FormRadioLayout[] {
     return this.getModel().map(
       (item) =>
-        new FormRadioLayout(item.id, item.id, `../assets/images/${item.id}.png`)
+        new FormRadioLayout(
+          item.id,
+          item.id,
+          `/../assets/images/${item.id}.png`
+        )
     );
   }
 }

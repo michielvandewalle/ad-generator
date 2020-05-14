@@ -10,7 +10,7 @@ export class StateService {
       brand: "K I D D Y B I P S",
       compositionId: "v1",
       layoutId: "v1",
-      colorId: "plum",
+      colorId: "sand",
     });
   }
 }
