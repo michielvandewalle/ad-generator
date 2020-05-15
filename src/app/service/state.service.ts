@@ -8,8 +8,8 @@ export class StateService {
   public getModel(): State {
     return new State({
       brand: "K I D D Y B I P S",
-      compositionId: "v1",
       layoutId: "v1",
+      compositionId: "v1",
       colorId: "sand",
     });
   }

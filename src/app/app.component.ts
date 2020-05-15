@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
     this.selectedLayout = this.layout[0];
   }
 
-  public changeLayout(id: string): void {
-    this.selectedLayout = this.layoutService.getById(id);
+  public changeLayout(): void {
+    this.selectedLayout = this.layoutService.getById(this.state.layoutId);
   }
 
   /**

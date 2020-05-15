@@ -13,14 +13,14 @@ export class LayoutV2Mapper {
 
   public map(): Layout {
     const canvas = new Canvas({
-      width: 1080,
-      height: 1080,
+      width: 874,
+      height: 1240,
       margin: 48,
     });
 
     return new Layout({
-      id: "v2",
-      label: "square",
+      id: "v5",
+      label: "A7",
       canvas: canvas,
       composition: this.getComposition(
         canvas.width,
@@ -43,56 +43,48 @@ export class LayoutV2Mapper {
         brand: new Graphic({
           coordinates: new Coordinates(
             margin,
-            margin,
+            width - margin - 180,
             width / 2 - margin,
-            height / 2 - margin
+            180
           ),
           font: new Font({
             fontFamily: "Noto Sans",
-            lineHeight: 24,
+            lineHeight: 32,
             textAlignment: new TextAlignment("center", "center"),
-            textSize: 18,
+            textSize: 22,
           }),
         }),
         image: [
           new Graphic({
             coordinates: new Coordinates(
-              width / 2,
               margin,
-              width / 2 - margin,
-              height / 2 - margin
-            ),
-          }),
-          new Graphic({
-            coordinates: new Coordinates(
               margin,
-              height / 2,
-              width / 2 - margin,
-              height / 2 - margin
+              width - margin * 2,
+              width - margin * 2
             ),
           }),
         ],
         text: new Graphic({
           coordinates: new Coordinates(
-            width / 2 + margin / 2,
-            height / 2 + margin / 2,
-            width / 2 - margin * 2,
-            height / 2 - margin * 2
+            margin + margin,
+            width - margin + margin,
+            width - margin * 4,
+            height - width - margin * 2
           ),
           font: new Font({
             fontFamily: "Noto Sans",
-            lineHeight: 24,
+            lineHeight: 32,
             textAlignment: new TextAlignment("center", "center"),
-            textSize: 18,
+            textSize: 22,
           }),
         }),
         shape: [
           new Graphic({
             coordinates: new Coordinates(
-              width / 2,
-              height / 2,
-              width / 2 - margin,
-              height / 2 - margin
+              margin,
+              width - margin,
+              width - margin * 2,
+              height - width
             ),
           }),
         ],
@@ -105,15 +97,15 @@ export class LayoutV2Mapper {
         brand: new Graphic({
           coordinates: new Coordinates(
             width / 2,
-            margin,
+            width - margin - 180,
             width / 2 - margin,
-            height / 2 - margin
+            180
           ),
           font: new Font({
             fontFamily: "Noto Sans",
-            lineHeight: 24,
+            lineHeight: 32,
             textAlignment: new TextAlignment("center", "center"),
-            textSize: 18,
+            textSize: 22,
           }),
         }),
         image: [
@@ -121,40 +113,140 @@ export class LayoutV2Mapper {
             coordinates: new Coordinates(
               margin,
               margin,
-              width / 2 - margin,
-              height / 2 - margin
-            ),
-          }),
-          new Graphic({
-            coordinates: new Coordinates(
-              width / 2,
-              height / 2,
-              width / 2 - margin,
-              height / 2 - margin
+              width - margin * 2,
+              width - margin * 2
             ),
           }),
         ],
         text: new Graphic({
           coordinates: new Coordinates(
-            margin + margin / 2,
-            height / 2 + margin / 2,
-            width / 2 - margin * 2,
-            height / 2 - margin * 2
+            margin + margin,
+            width - margin + margin,
+            width - margin * 4,
+            height - width - margin * 2
           ),
           font: new Font({
             fontFamily: "Noto Sans",
-            lineHeight: 24,
+            lineHeight: 32,
             textAlignment: new TextAlignment("center", "center"),
-            textSize: 18,
+            textSize: 22,
           }),
         }),
         shape: [
           new Graphic({
             coordinates: new Coordinates(
               margin,
-              height / 2,
-              width / 2 - margin,
-              height / 2 - margin
+              width - margin,
+              width - margin * 2,
+              height - width
+            ),
+          }),
+        ],
+      })
+    );
+
+    composition.push(
+      new Composition({
+        id: "v3",
+        brand: new Graphic({
+          coordinates: new Coordinates(
+            margin,
+            height - width + margin,
+            width / 2 - margin,
+            180
+          ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 32,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 22,
+          }),
+        }),
+        image: [
+          new Graphic({
+            coordinates: new Coordinates(
+              margin,
+              height - width + margin,
+              width - margin * 2,
+              width - margin * 2
+            ),
+          }),
+        ],
+        text: new Graphic({
+          coordinates: new Coordinates(
+            margin + margin,
+            margin + margin,
+            width - margin * 4,
+            height - width - margin * 2
+          ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 32,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 22,
+          }),
+        }),
+        shape: [
+          new Graphic({
+            coordinates: new Coordinates(
+              margin,
+              margin,
+              width - margin * 2,
+              height - width
+            ),
+          }),
+        ],
+      })
+    );
+
+    composition.push(
+      new Composition({
+        id: "v4",
+        brand: new Graphic({
+          coordinates: new Coordinates(
+            width / 2,
+            height - width + margin,
+            width / 2 - margin,
+            180
+          ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 32,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 22,
+          }),
+        }),
+        image: [
+          new Graphic({
+            coordinates: new Coordinates(
+              margin,
+              height - width + margin,
+              width - margin * 2,
+              width - margin * 2
+            ),
+          }),
+        ],
+        text: new Graphic({
+          coordinates: new Coordinates(
+            margin + margin,
+            margin + margin,
+            width - margin * 4,
+            height - width - margin * 2
+          ),
+          font: new Font({
+            fontFamily: "Noto Sans",
+            lineHeight: 32,
+            textAlignment: new TextAlignment("center", "center"),
+            textSize: 22,
+          }),
+        }),
+        shape: [
+          new Graphic({
+            coordinates: new Coordinates(
+              margin,
+              margin,
+              width - margin * 2,
+              height - width
             ),
           }),
         ],

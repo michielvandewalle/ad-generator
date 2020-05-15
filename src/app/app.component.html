@@ -51,6 +51,7 @@
             [id]="'layout'"
             [options]="layoutOptions"
             [(ngModel)]="state.layoutId"
+            (change)="changeLayout()"
           ></app-form-radio-layout>
         </ng-template>
       </ngb-panel>
