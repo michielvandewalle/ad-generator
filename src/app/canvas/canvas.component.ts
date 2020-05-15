@@ -1,16 +1,21 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
 import * as p5 from "p5";
-import { State } from "../model/state.model";
-import { Layout } from "../model/layout.model";
-import { Color } from "../model/color.model";
 import { Composition } from "../model/composition.model";
+import { Layout } from "../model/layout.model";
+import { State } from "../model/state.model";
 import { ColorService } from "../service/color.service";
 
 @Component({
   selector: "app-canvas",
   templateUrl: "./canvas.component.html",
 })
-export class CanvasComponent implements OnInit {
+export class CanvasComponent implements OnInit, OnChanges {
   @Input() public state: State;
 
   @Input() public layout: Layout;
@@ -24,6 +29,19 @@ export class CanvasComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createCanvas();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    const isLayoutUpdate =
+      changes.layout.currentValue !== undefined &&
+      changes.layout.previousValue !== undefined &&
+      changes.layout.currentValue !== changes.layout.previousValue;
+    if (isLayoutUpdate) {
+      this.ctx.resizeCanvas(
+        this.layout.canvas.width,
+        this.layout.canvas.height
+      );
+    }
   }
 
   public download(): void {
@@ -47,9 +65,9 @@ export class CanvasComponent implements OnInit {
     ctx.draw = () => {
       this.drawBackground();
       this.drawShape();
+      this.drawImage();
       this.drawText();
       this.drawBrand();
-      this.drawImage();
     };
   }
 
